@@ -1,1 +1,880 @@
-我的page
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>杨金宏 | 个人简历</title>
+  <meta
+    name="description"
+    content="杨金宏的个人简历与项目展示页，包含教育背景、项目经历、专业技能与荣誉证书。"
+  >
+  <style>
+    :root {
+      --bg: #f5efe6;
+      --bg-soft: #fffaf4;
+      --panel: rgba(255, 252, 247, 0.82);
+      --panel-strong: rgba(255, 252, 247, 0.94);
+      --text: #1f2a2c;
+      --muted: #566567;
+      --line: rgba(31, 42, 44, 0.12);
+      --accent: #0f766e;
+      --accent-2: #d97706;
+      --shadow: 0 22px 60px rgba(66, 48, 28, 0.12);
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --max-width: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "MiSans", "HarmonyOS Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(15, 118, 110, 0.12), transparent 28%),
+        radial-gradient(circle at 85% 20%, rgba(217, 119, 6, 0.16), transparent 24%),
+        linear-gradient(135deg, #f7f1e8 0%, #f3ede4 48%, #efe5d8 100%);
+      min-height: 100vh;
+      line-height: 1.7;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.18) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.28), transparent 80%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page-shell {
+      width: min(var(--max-width), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 32px 0 72px;
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(20px);
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
+      padding: 30px;
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -60px -90px auto;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(15, 118, 110, 0.18), transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.08);
+      color: var(--accent);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+    }
+
+    .hero h1,
+    .section-title,
+    .timeline-title,
+    .quote {
+      font-family: "Noto Serif SC", "Source Han Serif SC", "STSong", serif;
+    }
+
+    .hero h1 {
+      margin: 14px 0 10px;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.04;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-subtitle {
+      max-width: 640px;
+      font-size: 18px;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .badge {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(31, 42, 44, 0.06);
+      border: 1px solid rgba(31, 42, 44, 0.08);
+      font-size: 14px;
+    }
+
+    .hero-panel {
+      display: grid;
+      gap: 16px;
+      grid-template-rows: auto auto 1fr;
+    }
+
+    .profile-card {
+      position: relative;
+      padding: 22px;
+      border-radius: var(--radius-xl);
+      background:
+        linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(255, 255, 255, 0.72)),
+        rgba(255, 252, 247, 0.88);
+      border: 1px solid rgba(15, 118, 110, 0.12);
+      overflow: hidden;
+    }
+
+    .profile-card::before {
+      content: "";
+      position: absolute;
+      top: -35px;
+      right: -35px;
+      width: 132px;
+      height: 132px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(217, 119, 6, 0.18), transparent 72%);
+    }
+
+    .profile-top {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+
+    .avatar {
+      width: 86px;
+      height: 86px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      font-weight: 700;
+      color: white;
+      background:
+        linear-gradient(135deg, rgba(15, 118, 110, 1), rgba(15, 118, 110, 0.68)),
+        #0f766e;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+    }
+
+    .profile-name {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .profile-role {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .info-item {
+      padding: 14px 16px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(31, 42, 44, 0.08);
+    }
+
+    .info-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .info-value {
+      font-size: 16px;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .quote {
+      padding: 18px 18px 0;
+      color: #304042;
+      font-size: 17px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .stat-card {
+      padding: 20px 18px;
+      border-radius: var(--radius-lg);
+      background: var(--panel-strong);
+      border: 1px solid rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: clamp(28px, 4vw, 38px);
+      line-height: 1;
+      margin-bottom: 8px;
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .section {
+      margin-top: 24px;
+      padding: 28px;
+      border-radius: 30px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.15;
+    }
+
+    .section-note {
+      margin: 0;
+      color: var(--muted);
+      max-width: 520px;
+      text-align: right;
+    }
+
+    .education-card {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .soft-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(31, 42, 44, 0.08);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .school-name {
+      font-size: 28px;
+      margin: 0 0 10px;
+    }
+
+    .major {
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .course-list,
+    .skill-list,
+    .responsibility-list,
+    .award-list {
+      margin: 0;
+      padding-left: 22px;
+    }
+
+    .course-list li,
+    .skill-list li,
+    .responsibility-list li,
+    .award-list li {
+      margin: 8px 0;
+    }
+
+    .highlight-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .highlight-card {
+      padding: 18px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(255, 255, 255, 0.72));
+      border: 1px solid rgba(15, 118, 110, 0.12);
+    }
+
+    .highlight-title {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .highlight-value {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      gap: 18px;
+      padding-left: 20px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, rgba(15, 118, 110, 0.7), rgba(15, 118, 110, 0.12));
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 24px;
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.62);
+      border: 1px solid rgba(31, 42, 44, 0.08);
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: -28px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 4px solid #f7f1e8;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.14);
+    }
+
+    .timeline-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: start;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    .timeline-title {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .timeline-period {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(217, 119, 6, 0.08);
+      color: var(--accent-2);
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 12px 0 18px;
+    }
+
+    .project-tag {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(31, 42, 44, 0.06);
+      border: 1px solid rgba(31, 42, 44, 0.08);
+      font-size: 13px;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 0.88fr;
+      gap: 18px;
+    }
+
+    .skill-panel {
+      display: grid;
+      gap: 18px;
+    }
+
+    .skill-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(15, 118, 110, 0.08);
+      color: var(--accent);
+      border: 1px solid rgba(15, 118, 110, 0.12);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .award-card {
+      display: grid;
+      gap: 14px;
+    }
+
+    .award-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(31, 42, 44, 0.08);
+      align-items: center;
+    }
+
+    .award-name {
+      font-weight: 600;
+    }
+
+    .award-date {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .footer {
+      margin-top: 22px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .intro {
+      animation: float-up 0.9s ease both;
+    }
+
+    .intro-delay-1 {
+      animation: float-up 0.9s ease 0.08s both;
+    }
+
+    .intro-delay-2 {
+      animation: float-up 0.9s ease 0.16s both;
+    }
+
+    .intro-delay-3 {
+      animation: float-up 0.9s ease 0.24s both;
+    }
+
+    @keyframes float-up {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero,
+      .education-card,
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+
+      .section-header {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .section-note {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page-shell {
+        width: min(100% - 20px, var(--max-width));
+        padding-top: 18px;
+        padding-bottom: 40px;
+      }
+
+      .hero,
+      .section {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline {
+        padding-left: 18px;
+      }
+
+      .timeline-item::before {
+        left: -25px;
+      }
+
+      .school-name,
+      .timeline-title {
+        font-size: 24px;
+      }
+
+      .hero-subtitle,
+      .quote {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page-shell">
+    <section class="hero glass intro">
+      <div class="hero-copy">
+        <div>
+          <span class="eyebrow">Software Engineering · Resume Page</span>
+          <h1>杨金宏</h1>
+          <p class="hero-subtitle">
+            软件工程本科背景，专注 Java 后端开发方向，具备 Spring Boot、MyBatis Plus、Redis、MySQL 等技术实践经验。
+          </p>
+        </div>
+
+        <div class="hero-badges intro-delay-1">
+          <span class="badge">南京林业大学 · 软件工程</span>
+          <span class="badge">GPA 3.86 / 4.5</span>
+          <span class="badge">专业排名前 2%</span>
+          <span class="badge">Java 后端开发</span>
+        </div>
+      </div>
+
+      <div class="hero-panel intro-delay-2">
+        <div class="profile-card">
+          <div class="profile-top">
+            <div class="avatar">YJH</div>
+            <div>
+              <h2 class="profile-name">杨金宏</h2>
+              <p class="profile-role">本科 · 21 岁 · 男</p>
+            </div>
+          </div>
+
+          <div class="quote">
+            持续把课程基础、工程实践和项目落地结合起来，做稳定、清晰、可维护的软件。
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <a class="info-item" href="tel:18179480749">
+            <div class="info-label">Phone</div>
+            <div class="info-value">18179480749</div>
+          </a>
+          <a class="info-item" href="mailto:2640099045@qq.com">
+            <div class="info-label">Email</div>
+            <div class="info-value">2640099045@qq.com</div>
+          </a>
+          <div class="info-item">
+            <div class="info-label">Education</div>
+            <div class="info-value">本科</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Focus</div>
+            <div class="info-value">Java / Web 后端</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stats">
+      <article class="stat-card intro-delay-1">
+        <div class="stat-number">2021.09</div>
+        <div class="stat-label">进入南京林业大学软件工程专业学习</div>
+      </article>
+      <article class="stat-card intro-delay-2">
+        <div class="stat-number">1</div>
+        <div class="stat-label">核心项目经历，覆盖管理端与移动端功能开发</div>
+      </article>
+      <article class="stat-card intro-delay-3">
+        <div class="stat-number">4+</div>
+        <div class="stat-label">荣誉与竞赛成果，持续积累学习与实践能力</div>
+      </article>
+    </section>
+
+    <section class="section glass reveal">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Education</p>
+          <h2 class="section-title">教育背景</h2>
+        </div>
+        <p class="section-note">扎实掌握计算机基础课程，成绩稳定，专业排名前列。</p>
+      </div>
+
+      <div class="education-card">
+        <article class="soft-card">
+          <div class="meta-row">
+            <span>2021.09 - 2025.06</span>
+            <span>南京林业大学</span>
+          </div>
+          <h3 class="school-name">南京林业大学</h3>
+          <div class="major">软件工程 · 本科</div>
+          <ul class="course-list">
+            <li>GPA：3.86 / 4.5，专业排名前 2%</li>
+            <li>主修课程：计算机组成原理、计算机网络、数据结构、操作系统、Java 程序设计</li>
+          </ul>
+        </article>
+
+        <div class="highlight-grid">
+          <article class="highlight-card">
+            <div class="highlight-title">课程基础</div>
+            <div class="highlight-value">计算机核心课程体系</div>
+          </article>
+          <article class="highlight-card">
+            <div class="highlight-title">学习表现</div>
+            <div class="highlight-value">专业前 2%</div>
+          </article>
+          <article class="highlight-card">
+            <div class="highlight-title">能力方向</div>
+            <div class="highlight-value">后端开发 + 工程实践</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section glass reveal">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Project Experience</p>
+          <h2 class="section-title">项目经历</h2>
+        </div>
+        <p class="section-note">用一段完整项目，集中呈现后端接口、业务模块与移动端功能开发能力。</p>
+      </div>
+
+      <div class="timeline">
+        <article class="timeline-item">
+          <div class="timeline-head">
+            <div>
+              <h3 class="timeline-title">瑞吉外卖</h3>
+              <div class="meta-row">
+                <span>开发环境：JDK + MySQL + IDEA + Tomcat</span>
+              </div>
+            </div>
+            <span class="timeline-period">2024.01 - 2024.02</span>
+          </div>
+
+          <div class="project-tags">
+            <span class="project-tag">Spring Boot</span>
+            <span class="project-tag">MyBatis Plus</span>
+            <span class="project-tag">Redis</span>
+            <span class="project-tag">管理后台</span>
+            <span class="project-tag">移动端应用</span>
+          </div>
+
+          <div class="two-column">
+            <article class="soft-card">
+              <h4>项目介绍</h4>
+              <p>
+                该项目是面向餐饮业的软件解决方案，覆盖系统管理后台和移动应用两大核心组件。后台面向餐厅工作人员，
+                提供菜品、套餐和订单的管理维护功能；移动端面向顾客，支持浏览菜单、加入购物车以及在线下单。
+              </p>
+            </article>
+
+            <article class="soft-card">
+              <h4>职责描述</h4>
+              <ol class="responsibility-list">
+                <li>负责系统管理后台员工、分类、菜品、套餐模块的编写。</li>
+                <li>负责移动端应用开发，实现短信验证码登录功能。</li>
+                <li>开发移动端菜品浏览功能，优化用户浏览体验。</li>
+                <li>实现用户地址信息管理，便于收货地址维护。</li>
+                <li>开发购物车功能，支持添加菜品与订单管理。</li>
+                <li>实现订单提交流程，确保用户顺利完成下单。</li>
+              </ol>
+            </article>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section glass reveal">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Professional Skills</p>
+          <h2 class="section-title">专业技能</h2>
+        </div>
+        <p class="section-note">技能表达从“堆技术名词”改成“带能力倾向”的方式，更适合放在个人主页上。</p>
+      </div>
+
+      <div class="two-column">
+        <article class="soft-card skill-panel">
+          <div>
+            <h3>核心能力</h3>
+            <ul class="skill-list">
+              <li>熟练掌握 Java 基础、集合等相关知识。</li>
+              <li>熟悉 MySQL 及索引机制，能够高效编写 SQL，包括联合查询和子查询。</li>
+              <li>熟练使用 Spring Boot、MyBatis 等常用框架，了解自动装配与 IOC 控制反转原理。</li>
+              <li>掌握常见数据结构，包括链表、二叉树、图等。</li>
+            </ul>
+          </div>
+
+          <div class="skill-chips">
+            <span class="chip">Java</span>
+            <span class="chip">Spring Boot</span>
+            <span class="chip">MyBatis</span>
+            <span class="chip">MyBatis Plus</span>
+            <span class="chip">Redis</span>
+            <span class="chip">MySQL</span>
+            <span class="chip">SQL</span>
+            <span class="chip">数据结构</span>
+          </div>
+        </article>
+
+        <article class="soft-card">
+          <h3>能力概览</h3>
+          <div class="highlight-grid">
+            <div class="highlight-card">
+              <div class="highlight-title">后端开发</div>
+              <div class="highlight-value">业务模块开发与接口实现</div>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-title">数据库能力</div>
+              <div class="highlight-value">SQL 编写 / 查询优化意识</div>
+            </div>
+            <div class="highlight-card">
+              <div class="highlight-title">基础素养</div>
+              <div class="highlight-value">网络、操作系统、数据结构</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section glass reveal">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">Awards</p>
+          <h2 class="section-title">荣誉证书</h2>
+        </div>
+        <p class="section-note">把获奖内容整理成更清晰的展示形式，浏览时一眼就能抓住重点。</p>
+      </div>
+
+      <div class="award-card">
+        <article class="award-item">
+          <div class="award-name">第十三届 MathorCup 高校数学建模挑战赛全国一等奖</div>
+          <div class="award-date">2023.06</div>
+        </article>
+        <article class="award-item">
+          <div class="award-name">第十四届蓝桥杯江苏赛区 C/C++ 程序设计大学 B 组一等奖</div>
+          <div class="award-date">2023.04</div>
+        </article>
+        <article class="award-item">
+          <div class="award-name">国家励志奖学金</div>
+          <div class="award-date">2023.11</div>
+        </article>
+        <article class="award-item">
+          <div class="award-name">校“三好学生”称号</div>
+          <div class="award-date">2022.12</div>
+        </article>
+      </div>
+    </section>
+
+    <p class="footer">Designed for GitHub Pages · 简洁、响应式、可直接部署</p>
+  </main>
+
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.18 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+  </script>
+</body>
+</html>
